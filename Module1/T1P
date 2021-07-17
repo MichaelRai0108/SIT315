@@ -1,0 +1,66 @@
+// C++ code
+//
+//it is a traffic light system, in which the lights glow in response to the motion detected by the motion sensors
+int r1 = 13;
+int y1 = 12;
+int g1 = 11;
+int pir1 = 6;
+
+int r2 = 8;
+int y2 = 9;
+int g2 = 10;
+int pir2 = 7;
+
+int pir1stat = 0;
+int pir2stat = 0;
+void setup()
+{
+  pinMode(r1, OUTPUT);
+  pinMode(y1, OUTPUT);
+  pinMode(g1, OUTPUT);
+  pinMode(r2, OUTPUT);
+  pinMode(y2, OUTPUT);
+  pinMode(g2, OUTPUT);
+  pinMode(pir1, INPUT);
+  pinMode(pir2, INPUT);
+  Serial.begin(9600);
+}
+
+void loop()
+{
+  pir1stat = digitalRead(pir1);
+  pir2stat = digitalRead(pir2);'
+  //when one of the pirmotion sensor detect some motion, then the correpond code will be implemented 
+  if(pir1stat == HIGH)
+  {
+    digitalWrite(r2,HIGH);
+    digitalWrite(y2,LOW);
+    digitalWrite(g2,LOW);
+    digitalWrite(r1,HIGH);
+    delay(4000);
+    digitalWrite(r1,LOW);
+    digitalWrite(g1,HIGH);
+    delay(6000);
+    digitalWrite(g1,LOW);
+    digitalWrite(y1,HIGH);
+    delay(4000);
+    digitalWrite(y1,LOW);
+    digitalWrite(r1,HIGH);
+  }
+  if(pir2stat == HIGH)
+  {
+    digitalWrite(r1,HIGH);
+    digitalWrite(y1,LOW);
+    digitalWrite(g1,LOW);
+    digitalWrite(r2,HIGH);
+    delay(4000);
+    digitalWrite(r2,LOW);
+    digitalWrite(g2,HIGH);
+    delay(6000);
+    digitalWrite(g2,LOW);
+    digitalWrite(y2,HIGH);
+    delay(4000);
+    digitalWrite(y2,LOW);
+    digitalWrite(r2,HIGH);
+  }
+}
